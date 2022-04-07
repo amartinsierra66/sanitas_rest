@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication(scanBasePackages = {"com.sanitas.service",
 		"com.sanitas.controller",
-		"com.sanitas.init",
 		"com.sanitas.converters"})
 @EnableJpaRepositories(basePackages = {"com.sanitas.dao"})
 @EnableTransactionManagement
