@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.sanitas.dtos.CredentialsDto;
 import com.sanitas.dtos.StudentDto;
 
 @Service
@@ -32,8 +33,9 @@ public class StudentServiceImpl implements StudentService {
 	String token;
 	@PostConstruct
 	public void init() {
+		CredentialsDto credentials=new CredentialsDto(user, password);
 		//nos autenticamos para obtener el token
-		token=template.postForObject(url+"login?user="+user+"&pwd="+password, null, String.class);
+		token=template.postForObject(url+"login", credentials, String.class);
 		
 	}
 

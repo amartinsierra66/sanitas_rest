@@ -11,8 +11,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.sanitas.dtos.CredentialsDto;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -28,9 +30,9 @@ public class AuthController {
 		this.authManager=authManager;
 	}
 	
-	@PostMapping(value="login",produces=MediaType.TEXT_PLAIN_VALUE)
-	public String login(@RequestParam("user") String user, @RequestParam("pwd") String pwd) {
-		Authentication autentication=authManager.authenticate(new UsernamePasswordAuthenticationToken(user,pwd));
+	@PostMapping(value="login",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.TEXT_PLAIN_VALUE)
+	public String login(@RequestBody CredentialsDto credentials) {
+		Authentication autentication=authManager.authenticate(new UsernamePasswordAuthenticationToken(credentials.getUser(),credentials.getPwd()));
 		//si el usuario está autenticado, se genera el token
 		if(autentication.isAuthenticated()) {
 			return getToken(autentication);
