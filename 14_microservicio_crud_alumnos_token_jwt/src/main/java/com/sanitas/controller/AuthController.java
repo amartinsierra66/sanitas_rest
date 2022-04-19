@@ -19,8 +19,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @CrossOrigin("*")
 @RestController
 public class AuthController {
-	//@Value("#{clave}")
-	private String CLAVE="1234";
+	@Value("${clave}")
+	private String CLAVE;
 	
 	private static long TIEMPO_VIDA=87_000_000; //un dia y algo
 	AuthenticationManager authManager;

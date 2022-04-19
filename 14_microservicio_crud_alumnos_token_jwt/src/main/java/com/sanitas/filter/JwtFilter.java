@@ -20,10 +20,11 @@ import io.jsonwebtoken.Jwts;
 
 public class JwtFilter extends BasicAuthenticationFilter {
 	
-	private String CLAVE="1234";
+	private String CLAVE;
 	
-	public JwtFilter(AuthenticationManager authManager) {
+	public JwtFilter(AuthenticationManager authManager,String clave) {
 		super(authManager);
+		this.CLAVE=clave;
 	}
 
 	@Override
