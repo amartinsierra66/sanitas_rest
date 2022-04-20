@@ -1,0 +1,240 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "localhost:8080",
+  "tags": [
+    {
+      "name": "alumnos-controller",
+      "description": "Alumnos Controller"
+    }
+  ],
+  "paths": {
+    "/crud_alumnos/alumno": {
+      "post": {
+        "tags": [
+          "alumnos-controller"
+        ],
+        "summary": "Graba en la bd los datos del alumno recibido en el cuerpo",
+        "operationId": "altaAlumnoUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "alumno",
+            "description": "datos del alumno",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AlumnoDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AlumnoDto"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "alumnos-controller"
+        ],
+        "summary": "Actualiza los datos del alumno recibido en el cuerpo",
+        "operationId": "actualizarAlumnoUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "alumno",
+            "description": "JSON con los datos del alumno",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AlumnoDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/crud_alumnos/alumno/{nombre}": {
+      "delete": {
+        "tags": [
+          "alumnos-controller"
+        ],
+        "summary": "Elimina el alumno cuyo nombre ser recibe en la URL",
+        "operationId": "eliminarAlumnoUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "path",
+            "description": "nombre",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/crud_alumnos/alumnos": {
+      "get": {
+        "tags": [
+          "alumnos-controller"
+        ],
+        "summary": "Devuelve todos los alumnos existentes",
+        "operationId": "todosAlumnosUsingGET",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AlumnoDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/crud_alumnos/alumnos/{curso}": {
+      "get": {
+        "tags": [
+          "alumnos-controller"
+        ],
+        "summary": "Devuelve la lista de alumnos de un curso",
+        "operationId": "listadoAlumnosUsingGET",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "curso",
+            "in": "path",
+            "description": "Nombre del curso",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AlumnoDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AlumnoDto": {
+      "type": "object",
+      "properties": {
+        "curso": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "nota": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "title": "AlumnoDto"
+    }
+  }
+}
