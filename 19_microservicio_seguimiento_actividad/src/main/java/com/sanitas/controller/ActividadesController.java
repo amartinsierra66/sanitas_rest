@@ -43,7 +43,7 @@ public class ActividadesController {
 			return new ResponseEntity<>(resultado,HttpStatus.NO_CONTENT);
 		}
 	}
-	@GetMapping(value="actividades/{recurso}",produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="actividadesrec/{recurso}",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ActividadDto>> actividadesPorRecurso(@PathVariable("recurso") String recurso){
 		List<ActividadDto> resultado=actividadesService.actividadesRecurso(recurso);
 		if(resultado.size()>0) {
