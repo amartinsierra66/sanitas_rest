@@ -1,0 +1,12 @@
+password: ${PWD}
+server:
+  port: 9000
+user: admin
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+spring:
+  application:
+    name: servicio-student

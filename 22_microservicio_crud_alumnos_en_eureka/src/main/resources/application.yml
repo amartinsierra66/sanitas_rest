@@ -1,0 +1,22 @@
+clave: 1234
+server:
+  servlet:
+    context-path: /crud_alumnos
+  port: 0 #0 se inicia por un puerto libre
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3307/academia?serverTimezone=UTC
+    username: root
+  application:
+    name: servicio-alumnos
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
