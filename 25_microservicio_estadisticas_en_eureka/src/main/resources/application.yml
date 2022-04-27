@@ -1,0 +1,11 @@
+password: ${PWD}
+server:
+  port: 7500
+user: admin
+spring:
+  application:
+    name: servicio-estadisticas
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
