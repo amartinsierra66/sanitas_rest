@@ -2,18 +2,30 @@ package init;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.sanitas.filter.JwtFilter;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	@Value("${clave}")
+	private String clave;
+	
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		/*auth
@@ -66,9 +78,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.authorizeRequests()
 		//solo los miembros del rol admin podrán realizar altas
 		//y para eliminar, tendrán que estar autenticados
-		.antMatchers("Reservas").hasRole("MASTER")
+		.antMatchers(HttpMethod.GET,"Reservas").hasRole("MASTER")
 		.and()
-		.httpBasic();
+		.addFilter(new JwtFilter(authenticationManagerBean(),clave));
 	}
 	
 	
