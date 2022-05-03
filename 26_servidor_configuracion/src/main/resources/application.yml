@@ -2,8 +2,15 @@ server:
   port: 8888
 
 spring:
+  #profiles:
+   # active:
+   # - native
   cloud:
     config:
       server:
         git:
-          uri: https://github.com/amartinsierra66/configuracion_microservicios
+          uri:  #https://github.com/amartinsierra66/configuracion_microservicios
+          
+       # native:
+       #   search-locations:
+       #   - file:///c:\temp\config
