@@ -16,7 +16,7 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	RestTemplate template;
 	
-	String url="http://localhost:8080/crud_alumnos/";
+	String url="http://localhost:9000/crud_alumnos/";
 
 	@Override
 	public List<StudentDto> estudiantesNotaMinima(double nota) {

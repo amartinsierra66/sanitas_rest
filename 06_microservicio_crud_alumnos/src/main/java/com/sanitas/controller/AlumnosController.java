@@ -31,6 +31,7 @@ public class AlumnosController {
 	}	
 	@GetMapping(value="alumnos/{curso}",produces= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
 	public List<AlumnoDto> listadoAlumnos(@PathVariable("curso") String curso) {
+		alumnosService.printNombresNotas(curso);
 		return alumnosService.alumnosCurso(curso);
 	}
 	@GetMapping(value="alumnos",produces=MediaType.APPLICATION_JSON_VALUE)

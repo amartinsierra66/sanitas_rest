@@ -10,4 +10,5 @@ public interface AlumnosService {
 	List<AlumnoDto> alumnosCurso(String curso);
 	List<AlumnoDto> todosAlumnos();
 	void actualizarAlumno(AlumnoDto alumno);
+	void printNombresNotas(String curso);
 }

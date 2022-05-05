@@ -54,4 +54,13 @@ public class AlumnosServiceImpl implements AlumnosService {
 		alumnosDao.save(alumnoConverter.dtoToAlumno(alumno));
 	}
 
+
+
+	@Override
+	public void printNombresNotas(String curso) {
+		List<Object[]> res=alumnosDao.findNombresNota(curso);
+		res.forEach(item->System.out.println(item[0].toString()+":"+(Double)item[1]));
+		
+	}
+
 }
