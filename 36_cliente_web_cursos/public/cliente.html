@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="resultado"></div>
+<script type="text/javascript">
+    var source = new EventSource("http://localhost:8080/cursos") // este es el endpoint de nuestro controller
+    source.addEventListener('message', function(e) {
+        document.getElementById("resultado").innerHTML += e.data + "<br>"
+    });
+
+    source.addEventListener('open', function(e) {
+        console.log("conecta");
+    });
+
+    source.addEventListener('error', function(e) {
+    	source.close();
+        console.log("cierra");
+        
+    });
+</script>
+</body>
+</html>
