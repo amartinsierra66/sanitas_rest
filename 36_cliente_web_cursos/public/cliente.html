@@ -7,7 +7,7 @@
 <body>
 <div id="resultado"></div>
 <script type="text/javascript">
-    var source = new EventSource("http://localhost:8080/cursos") // este es el endpoint de nuestro controller
+    var source = new EventSource("http://localhost:8080/libros") // este es el endpoint de nuestro controller
     source.addEventListener('message', function(e) {
         document.getElementById("resultado").innerHTML += e.data + "<br>"
     });
