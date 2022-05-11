@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+var source;
+function cargaPaises(){
+	
+	let url="http://localhost:7500/paises";
+	source=new EventSource(url); //objeto para consumir flujos de datos
+	//comenzamos suscripción
+	source.addEventListener("message",function(e){
+		console.log(e.data);
+		$("#paises").append("<option value='"+e.data+"'>"+e.data+"</option>");
+		console.log(e.target.readyState);
+		
+	});
+	source.addEventListener("open",function(e){
+		console.log("open");
+		
+	});
+	source.addEventListener("error",function(e){
+		console.log(e);
+		source.close();		
+	});
+}
+function items(){
+	let url="http://localhost:7500/items/"+$("#paises").val();
+	source.close();
+	source=new EventSource(url); //objeto para consumir flujos de datos
+	$("#items").html("<tr><th>Pais</th><th>Indicador</th><th>Semana</th><th>Ratio</th></tr>");
+	//comenzamos suscripción
+	
+	source.addEventListener("message",function(e){
+		var data=JSON.parse(e.data);
+		console.log(data);
+		var datos="<tr><td>"+data.pais+"</td><td>"+data.indicador+"</td><td>"+data.semana+"</td><td>"+data.ratio+"</td></tr>";
+		$("#items").html($("#items").html()+datos);			
+	});
+	source.addEventListener("error",function(e){
+		$("#items").html($("#items").html()+"</table>");	
+		source.close();		
+	});
+}
+
+</script>
+
+</head>
+<body onload="cargaPaises();">
+<center>
+	Seleccione pais:
+	<select id="paises" onchange="items()">
+	
+	</select>
+	<br><br>
+	
+	<br><br>
+	
+	
+		<table id="items" border='1'>
+	
+		</table>
+	
+</center>
+</body>
+</html>
