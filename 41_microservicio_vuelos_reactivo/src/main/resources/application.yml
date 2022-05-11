@@ -1,0 +1,8 @@
+server:
+  port: 8001
+spring:
+  r2dbc:
+    name: viajes
+    password: root
+    url: r2dbc:mysql://localhost:3307
+    username: root
