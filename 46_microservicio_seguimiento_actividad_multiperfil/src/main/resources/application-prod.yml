@@ -1,0 +1,22 @@
+clave: 1234
+server:
+  port: 0
+  servlet:
+    context-path: /seguimiento
+spring:
+  application:
+    name: servicio-seguimiento
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: h%f_4
+    url: jdbc:mysql://192.34.23.156:3306/web?serverTimezone=UTC
+    username: root
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+eureka:
+  client:
+    service-url:
+      defaultZone: http://189.23.45.100:8761/eureka
